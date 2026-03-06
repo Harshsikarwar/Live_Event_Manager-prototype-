@@ -1,0 +1,40 @@
+#About
+The Live Event Manager is a web software that's manage changing orders
+of programmes of ongoing event which help to coordinate between team 
+members and notify correct sequence of upcoming program to audience.
+
+#Technology For Prototype
+Frontend : HTML, CSS and JS
+Backend : Django, Django Rest Framework
+Database : SQLLite
+
+#Entity And Relations
+Entity_1 : Event(eventName, discription, startTime, endTime)
+Entity_2 : Program(programOrderNumber, programName, discription)
+Relation : Event -(1 to many)-> Program
+
+#Frontend
+Pages:
+1.Home Page(public)
+Here user can search for events
+2.Event Page
+Here user can see event programmes and ongoing changes
+3.Admin Page(login required)
+User can see there created events,
+can create, update and delete programs, 
+can give access who can edit theme 
+
+What to know before building:
+1.Core HTML
+2.CSS surface level
+3.JavaScript(basics, dom-manupulation and api-handling)
+
+Recommended Resource:
+YT : ChaiaurCode, ApnaCollege
+Documentations : mdn web docs, geeksforgeeks, w3schools
+practice project :
+todo app for curd
+news/movie display app by fetching api
+
+Extra:
+learn git-github(imp) and dockers
