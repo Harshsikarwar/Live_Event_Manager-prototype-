@@ -1,6 +1,4 @@
 # Live Event Manager(prototype)
-
-## About
 The Live Event Manager is a web software that's manage changing orders
 of programmes of ongoing event which help to coordinate between team 
 members and notify correct sequence of upcoming program to audience.
