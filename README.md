@@ -4,9 +4,9 @@ of programmes of ongoing event which help to coordinate between team
 members and notify correct sequence of upcoming program to audience.
 
 ## Technology For Prototype
-__Frontend :__ * HTML * CSS * JS
-Backend : Django, Django Rest Framework
-Database : SQLLite
+* __Frontend :__ HTML, CSS and JS
+* __Backend :__ Django, Django Rest Framework
+* __Database :__ SQLLite
 
 ## Entity And Relations
 Entity_1 : Event(eventName, discription, startTime, endTime)
