@@ -4,7 +4,7 @@ of programmes of ongoing event which help to coordinate between team
 members and notify correct sequence of upcoming program to audience.
 
 ## Technology For Prototype
-Frontend : HTML, CSS and JS
+__Frontend :__ * HTML * CSS * JS
 Backend : Django, Django Rest Framework
 Database : SQLLite
 
