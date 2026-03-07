@@ -10,5 +10,5 @@ Database : SQLLite
 
 #Entity And Relations
 Entity_1 : Event(eventName, discription, startTime, endTime)
-Entity_2 : Program(programOrderNumber, programName, discription)
+Entity_2 : Program(event, programOrderNumber, programName, discription)
 Relation : Event -(1 to many)-> Program
