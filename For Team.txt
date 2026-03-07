@@ -9,7 +9,7 @@ Backend : Django, Django Rest Framework
 Database : SQLLite
 
 #Entity And Relations
-Entity_1 : Event(eventName, discription, startTime, endTime)
+Entity_1 : Event(organizer, eventName, discription, startTime, endTime)
 Entity_2 : Program(programOrderNumber, programName, discription)
 Relation : Event -(1 to many)-> Program
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 # Create your models here.
 '''Username: admin
 Email address: harshsikarwar2005@gmail.com
@@ -9,6 +10,7 @@ class Event(models.Model):
     description = models.TextField(blank=True, null=True)
     startTime = models.DateTimeField(default=timezone.now)
     endTime = models.DateTimeField(blank=True, null=True)
+    organizer = models.ForeignKey(User, on_delete=models.CASCADE)
 
 PROGRAM_STATUS = [
     ("live", "LIVE"),

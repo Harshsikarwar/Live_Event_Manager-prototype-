@@ -13,3 +13,12 @@ ex: http://127.0.0.1:8000/api/event/1/program/
 4.For particular program of particular event
 http://127.0.0.1:8000/api/event/<id>/program/<orderNumber>/
 ex: http://127.0.0.1:8000/api/event/1/program/1/
+
+5.For singup
+ http://127.0.0.1:8000/auth/signup/
+
+5.For login
+ http://127.0.0.1:8000/auth/login/
+
+5.For logout
+ http://127.0.0.1:8000/auth/logout/
