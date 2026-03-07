@@ -9,6 +9,6 @@ members and notify correct sequence of upcoming program to audience.
 * __Database :__ SQLLite
 
 ## Entity And Relations
-Entity_1 : Event(eventName, discription, startTime, endTime)
-Entity_2 : Program(event, programOrderNumber, programName, discription)
-Relation : Event -(1 to many)-> Program
+* __Entity_1 :__ Event(eventName, discription, startTime, endTime)
+* __Entity_2 :__ Program(event, programOrderNumber, programName, discription)
+* __Relation :__ Event -(1 to many)-> Program
