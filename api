@@ -1,0 +1,15 @@
+#API
+1.For all events
+http://127.0.0.1:8000/api/event/
+
+2.For particular event
+http://127.0.0.1:8000/api/event/<id>
+ex: http://127.0.0.1:8000/api/event/1/
+
+3.For programs of particular event
+http://127.0.0.1:8000/api/event/<id>/program/
+ex: http://127.0.0.1:8000/api/event/1/program/
+
+4.For particular program of particular event
+http://127.0.0.1:8000/api/event/<id>/program/<orderNumber>/
+ex: http://127.0.0.1:8000/api/event/1/program/1/

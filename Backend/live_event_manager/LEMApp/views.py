@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
-from .models import*
+from .models import Event, Program
 from .serializers import*
 # Create your views here.
 
@@ -38,21 +38,22 @@ class ProgramListnCreate(APIView):
 class ProgramDetail(APIView):
     def get_object(self, event, orderNumber):
         try:
-            return Program.objects.get(event=event, programOrderNumber=orderNumber)
-        except:
+            print("data:",event, orderNumber)
+            return Program.objects.get(event_id=event, programOrderNumber=orderNumber)
+        except Program.DoesNotExist:
             return Http404
-    def get(self, event, orderNumber, request, format=None):
+    def get(self, request, event, orderNumber, format=None, *args, **kwargs):
         program = self.get_object(event=event, orderNumber=orderNumber)
         serializers = ProgramSerializer(program)
         return Response(serializers.data)
-    def put(self, event, orderNumber, request, format=None):
+    def put(self, request, event, orderNumber, format=None, *args, **kwargs):
         program = self.get_object(event=event, orderNumber=orderNumber)
         serializers = ProgramSerializer(program, data=request.data)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-    def delete(self, event, orderNumber, request, format=None):
+    def delete(self, request, event, orderNumber, format=None, *args, **kwargs):
         program = self.get_object(event=event, orderNumber=orderNumber)
         program.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
