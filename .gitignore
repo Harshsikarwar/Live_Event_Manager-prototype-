@@ -8,7 +8,6 @@ __pycache__/
 *.pyc
 
 # Django
-db.sqlite3
 *.log
 
 # OS
