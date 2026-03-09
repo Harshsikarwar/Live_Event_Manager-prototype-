@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Event</title>
+
+<link rel="stylesheet" href="../css/create_event.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+<div class="logo">
+<img src="../media/logo.png">
+<span>SyncStage</span>
+</div>
+
+<a href="dashboard.html" class="back-btn">← Dashboard</a>
+
+</header>
+
+
+<div class="container">
+
+<h1>Create Event</h1>
+
+<form id="createEventForm">
+
+<label>Event Name</label>
+<input type="text" id="eventName" required>
+
+
+<label>Description</label>
+<textarea id="description" required></textarea>
+
+
+<label>Start Time</label>
+<input type="datetime-local" id="startTime" required>
+
+
+<label>End Time</label>
+<input type="datetime-local" id="endTime">
+
+
+<button type="submit" class="create-btn">
+Create Event
+</button>
+
+</form>
+
+</div>
+
+<script src="../js/create_event.js"></script>
+
+</body>
+</html>

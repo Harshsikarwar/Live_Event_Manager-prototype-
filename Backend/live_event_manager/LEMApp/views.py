@@ -10,9 +10,13 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 # Create your views here.
 
 class EventListnCreate(generics.ListCreateAPIView):
-    queryset = Event.objects.all()
+
     serializer_class = EventSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        return Event.objects.filter(organizer=self.request.user)
+
     def perform_create(self, serializer):
         serializer.save(organizer=self.request.user)
 
@@ -20,6 +24,7 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+
 
 class ProgramListnCreate(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]

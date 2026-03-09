@@ -1,12 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
+
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/style.css">
+
+        <title>Dashboard</title>
+
+        <link rel="stylesheet" href="../css/dashboard.css">
+
     </head>
+
     <body>
-        <!--Code Here-->
+
+        <header class="navbar">
+
+            <div class="logo">
+                <img src="../media/logo.png">
+                <span>SyncStage</span>
+            </div>
+
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+
+        </header>
+
+
+            <section class="dashboard-header">
+
+                <h1>Dashboard</h1>
+
+                <a href="../pages/create_event.html" id="createEventBtn" class="create-btn">
+                Create Event
+                </a>
+
+            </section>
+
+
+            <div class="dashboard-container">
+
+                <div class="username-box" id="usernameBox">
+                Username
+            </div>
+
+            <h2>Events</h2>
+
+            <div id="eventsList"></div>
+
+        </div>
 
         <script src="../js/dashboard.js"></script>
+
     </body>
 </html>

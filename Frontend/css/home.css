@@ -1,0 +1,178 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: monospace;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+background:#f3f3f3;
+padding:30px;
+}
+
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:40px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:26px;
+font-weight:bold;
+}
+
+.logo img{
+width:35px;
+}
+
+
+.login-btn{
+background:#32b32b;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:20px;
+cursor:pointer;
+font-size: 16px;
+transition: all 0.4s ease-in-out;
+}
+
+
+/* SEARCH */
+.search-container{
+    display:flex;
+    justify-content:center;
+    margin:40px auto;
+    position:relative;
+    width:60%;
+    max-width:650px;
+}
+
+.search-container input{
+
+    width:100%;
+    padding:14px 50px 14px 20px;
+    border:none;
+    border-radius:30px;
+    background:#d9d9d9;
+    font-size:16px;
+}
+
+.search-container input:focus{
+    outline:none;
+}
+
+.search-btn{
+
+    position:absolute;
+    right:6px;
+    top:50%;
+    transform:translateY(-50%);
+
+    width:36px;
+    height:36px;
+
+    border:none;
+    border-radius:50%;
+    background:#f2f2f2;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+}
+
+.search-btn img{
+    width:16px;
+    height:16px;
+}
+
+
+
+
+/* EVENTS */
+
+.events-section h2{
+margin-bottom:20px;
+font-size:28px;
+}
+
+.events-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:40px;
+
+}
+
+
+
+/* EVENT CARD */
+
+.event-card{
+
+background:#dcdcdc;
+padding:20px;
+border-radius:20px;
+display:flex;
+flex-direction:column;
+gap:15px;
+
+}
+
+
+.event-title{
+font-size:22px;
+font-weight:bold;
+}
+
+
+.event-desc{
+font-size:14px;
+line-height:1.4;
+}
+
+
+.watch-btn{
+
+background:#32b32b;
+color:white;
+border:none;
+padding:8px 20px;
+border-radius:20px;
+width:90px;
+cursor:pointer;
+transition: all 0.4s ease-in-out;
+}
+
+.login-btn:hover, .watch-btn:hover{
+    background-color: #268921;
+}
+
+
+
+/* RESPONSIVE */
+
+@media (max-width:768px){
+
+.search-container input{
+width:90%;
+}
+
+.search-btn{
+right:8%;
+}
+
+}

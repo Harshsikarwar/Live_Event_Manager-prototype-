@@ -31,8 +31,7 @@ def login(request):
 
     if user:
 
-        token = Token.objects.get_or_create(user=user)
-
+        token, created = Token.objects.get_or_create(user=user)
         return Response({
             "token": token.key,
             "message": "Login successful"
@@ -46,3 +45,10 @@ def logout(request):
     request.user.auth_token.delete()
 
     return Response({"message":"Logged out successfully"})
+
+@api_view(['GET'])
+def current_user(request):
+
+    return Response({
+        "username": request.user.username
+    })
