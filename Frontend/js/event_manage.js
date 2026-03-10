@@ -1,8 +1,15 @@
 const API = "http://127.0.0.1:8000/api/event/"
 const token = localStorage.getItem("token")
 
-const params = new URLSearchParams(window.location.search)
-const eventId = params.get("id")
+const eventId = localStorage.getItem("eventId")
+
+if(!eventId){
+
+alert("Event not found")
+
+window.location.href = "dashboard.html"
+
+}
 
 let programs = []
 
@@ -46,15 +53,15 @@ programs.forEach(program => {
 
 const li = document.createElement("li")
 
-li.dataset.id = program.programOrderNumber
+li.dataset.id = program.id
 
 li.innerHTML = `
 <span>${program.programOrderNumber}</span>
 <span>${program.programName}</span>
 
 <div>
-<button onclick="editProgram(${program.programOrderNumber})">Edit</button>
-<button onclick="deleteProgram(${program.programOrderNumber})">Delete</button>
+<button onclick="editProgram(${program.id})">Edit</button>
+<button onclick="deleteProgram(${program.id})">Delete</button>
 </div>
 `
 
@@ -71,10 +78,8 @@ new Sortable(document.getElementById("programList"),{
 
 animation:150,
 
-onEnd: function(){
-
+onEnd:function(){
 updateOrder()
-
 }
 
 })
@@ -86,30 +91,31 @@ async function updateOrder(){
 
 const items = document.querySelectorAll("#programList li")
 
-let order = 1
+let newPrograms = []
 
-for(const item of items){
+items.forEach((item,index)=>{
 
-const id = item.dataset.id
+newPrograms.push({
+id: item.dataset.id,
+order: index + 1
+})
 
-await fetch(API + eventId + "/program/" + id + "/",{
+})
 
-method:"PUT",
+await fetch(API + eventId + "/program/reorder/",{
+
+method:"POST",
 
 headers:{
 "Content-Type":"application/json",
 "Authorization":"Token " + token
 },
 
-body:JSON.stringify({
-programOrderNumber: order
+body: JSON.stringify({
+programs: newPrograms
 })
 
 })
-
-order++
-
-}
 
 loadPrograms()
 
@@ -121,6 +127,8 @@ loadPrograms()
 async function addProgram(){
 
 const name = prompt("Program name")
+
+if(!name) return
 
 await fetch(API + eventId + "/program/",{
 
@@ -143,11 +151,41 @@ loadPrograms()
 }
 
 
+/* EDIT PROGRAM */
+
+async function editProgram(id){
+
+const name = prompt("New program name")
+
+if(!name) return
+
+await fetch(API + eventId + "/program/" + id + "/",{
+
+method:"PUT",
+
+headers:{
+"Content-Type":"application/json",
+"Authorization":"Token " + token
+},
+
+body: JSON.stringify({
+programName: name
+})
+
+})
+
+loadPrograms()
+
+}
+
+
 /* DELETE PROGRAM */
 
-async function deleteProgram(order){
+async function deleteProgram(id){
 
-await fetch(API + eventId + "/program/" + order + "/",{
+if(!confirm("Delete program?")) return
+
+await fetch(API + eventId + "/program/" + id + "/",{
 
 method:"DELETE",
 
@@ -189,6 +227,8 @@ alert("Event updated")
 
 }
 
+
+/* INITIAL LOAD */
 
 loadEvent()
 loadPrograms()

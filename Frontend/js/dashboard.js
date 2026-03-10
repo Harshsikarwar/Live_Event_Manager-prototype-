@@ -123,7 +123,9 @@ async function deleteEvent(id){
 
 function editEvent(id){
 
-    window.location.href = `event_manage.html?id=${id}`
+localStorage.setItem("eventId", id)
+
+window.location.href = "event_manage.html"
 
 }
 

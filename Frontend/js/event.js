@@ -12,7 +12,6 @@ const res = await fetch(API + eventId + "/")
 const data = await res.json()
 
 document.getElementById("eventName").innerText = data.eventName
-
 document.getElementById("eventDescription").innerText = data.description
 
 }
@@ -26,10 +25,11 @@ const programs = await res.json()
 
 const container = document.getElementById("programList")
 
+container.innerHTML = ""   // important to prevent duplicates
+
 programs.forEach(program => {
 
 let statusClass = "upcoming"
-
 let statusText = "upcoming"
 
 if(program.status === "live"){
@@ -39,7 +39,7 @@ statusText = "Live"
 
 if(program.status === "end"){
 statusClass = "end"
-statusText = "end"
+statusText = "End"
 }
 
 const div = document.createElement("div")
@@ -63,5 +63,10 @@ container.appendChild(div)
 
 }
 
+
+// Initial load
 loadEvent()
 loadPrograms()
+
+// Auto refresh every 5 seconds
+setInterval(loadPrograms, 5000)

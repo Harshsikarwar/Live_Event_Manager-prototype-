@@ -9,6 +9,29 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Event, Program
 from .serializers import EventSerializer, ProgramSerializer
 
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from django.db import transaction
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def reorder_programs(request, event):
+
+    programs = request.data.get("programs", [])
+
+    with transaction.atomic():
+
+        for item in programs:
+
+            Program.objects.filter(
+                id=item["id"],
+                event_id=event
+            ).update(
+                programOrderNumber=item["order"]
+            )
+
+    return Response({"message": "order updated"})
 
 class EventListnCreate(generics.ListCreateAPIView):
 
@@ -98,9 +121,7 @@ class ProgramDetail(APIView):
         )
 
         if serializer.is_valid():
-
             serializer.save()
-
             return Response(serializer.data)
 
         return Response(serializer.errors, status=400)

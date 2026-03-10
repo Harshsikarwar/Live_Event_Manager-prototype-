@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Program</title>
+
+        <link rel="stylesheet" href="../css/add_program.css">
+
+    </head>
+
+    <body>
+
+        <header class="navbar">
+
+        <div class="logo">
+        <img src="../media/logo.png">
+        <span>SyncStage</span>
+        </div>
+
+        <a href="dashboard.html" class="back-btn">←</a>
+
+        </header>
+
+
+        <div class="container">
+
+            <h1>Add Program</h1>
+
+            <form id="programForm">
+
+                <label>Program Name</label>
+                <input type="text" id="programName" required>
+
+                <label>Description</label>
+                <textarea id="description"></textarea>
+
+                <label>Order Number</label>
+                <input type="number" id="orderNumber" required>
+
+                <label>Status</label>
+
+                <select id="status">
+
+                <option value="upcoming">Upcoming</option>
+                <option value="live">Live</option>
+                <option value="end">End</option>
+
+                </select>
+
+                <button type="submit" class="submit-btn">
+                Add Program
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <script src="../js/add_program.js"></script>
+
+    </body>
+
+</html>
