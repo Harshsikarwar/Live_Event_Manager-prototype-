@@ -123,7 +123,7 @@ async function deleteEvent(id){
 
 function editEvent(id){
 
-    window.location.href = `edit_event.html?id=${id}`
+    window.location.href = `event_manage.html?id=${id}`
 
 }
 

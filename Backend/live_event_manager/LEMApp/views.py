@@ -4,10 +4,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
-from .models import Event, Program
-from .serializers import*
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-# Create your views here.
+
+from .models import Event, Program
+from .serializers import EventSerializer, ProgramSerializer
+
 
 class EventListnCreate(generics.ListCreateAPIView):
 
@@ -15,54 +16,100 @@ class EventListnCreate(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        return Event.objects.filter(organizer=self.request.user)
+
+        if self.request.user.is_authenticated:
+            return Event.objects.filter(organizer=self.request.user)
+
+        return Event.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(organizer=self.request.user)
 
+
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
+
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class ProgramListnCreate(APIView):
+
     permission_classes = [IsAuthenticatedOrReadOnly]
-    def get(self, request, event, format=None):
-        programs = Program.objects.filter(event_id=event)
-        serializers = ProgramSerializer(programs, many=True)
-        return Response(serializers.data)
-    
-    def post(self, request, event, format=None):
-        serializers = ProgramSerializer(data = request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data, status=status.HTTP_201_CREATED)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request, event):
+
+        programs = Program.objects.filter(
+            event_id=event
+        ).order_by("programOrderNumber")
+
+        serializer = ProgramSerializer(programs, many=True)
+
+        return Response(serializer.data)
+
+
+    def post(self, request, event):
+
+        serializer = ProgramSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.save(event_id=event)
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ProgramDetail(APIView):
+
     permission_classes = [IsAuthenticatedOrReadOnly]
+
     def get_object(self, event, orderNumber):
-        try:
-            print("data:",event, orderNumber)
-            return Program.objects.get(event_id=event, programOrderNumber=orderNumber)
-        except Program.DoesNotExist:
+
+        program = Program.objects.filter(
+            event_id=event,
+            programOrderNumber=orderNumber
+        ).first()
+
+        if not program:
             raise Http404
-        
-    def get(self, request, event, orderNumber, format=None, *args, **kwargs):
-        program = self.get_object(event=event, orderNumber=orderNumber)
-        serializers = ProgramSerializer(program)
-        return Response(serializers.data)
-    
-    def put(self, request, event, orderNumber, format=None, *args, **kwargs):
-        program = self.get_object(event=event, orderNumber=orderNumber)
-        serializers = ProgramSerializer(program, data=request.data)
-        if serializers.is_valid():
-            serializers.save()
-            return Response(serializers.data)
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    def delete(self, request, event, orderNumber, format=None, *args, **kwargs):
-        program = self.get_object(event=event, orderNumber=orderNumber)
+
+        return program
+
+
+    def get(self, request, event, orderNumber):
+
+        program = self.get_object(event, orderNumber)
+
+        serializer = ProgramSerializer(program)
+
+        return Response(serializer.data)
+
+
+    def put(self, request, event, orderNumber):
+
+        program = self.get_object(event, orderNumber)
+
+        serializer = ProgramSerializer(
+            program,
+            data=request.data,
+            partial=True
+        )
+
+        if serializer.is_valid():
+
+            serializer.save()
+
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=400)
+
+
+    def delete(self, request, event, orderNumber):
+
+        program = self.get_object(event, orderNumber)
+
         program.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(status=204)

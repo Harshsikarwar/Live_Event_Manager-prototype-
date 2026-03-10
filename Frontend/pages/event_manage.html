@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Manage Event</title>
+
+        <link rel="stylesheet" href="../css/event_manage.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+    </head>
+
+    <body>
+
+        <header class="navbar">
+
+        <div class="logo">
+            <img src="../media/logo.png">
+            <span>SyncStage</span>
+        </div>
+
+            <a href="dashboard.html" class="back-btn">↩</a>
+
+        </header>
+
+
+        <section class="event-header">
+
+            <input id="eventName">
+
+            <button onclick="updateEvent()">Save</button>
+
+            <button onclick="addProgram()">Add Program</button>
+
+        </section>
+
+
+        <div class="description-box">
+            <textarea id="eventDescription"></textarea>
+        </div>
+
+
+        <div class="program-container">
+
+            <ul id="programList"></ul>
+
+        </div>
+
+
+        <script src="../js/event_manage.js"></script>
+
+    </body>
+</html>
