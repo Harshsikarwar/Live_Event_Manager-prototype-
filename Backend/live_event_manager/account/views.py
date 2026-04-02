@@ -28,9 +28,9 @@ def login(request):
     password = request.data.get("password")
 
     user = authenticate(username=username,password=password)
-
-    if user:
-
+    print(user)
+    if user != None:
+        print(1)
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             "token": token.key,

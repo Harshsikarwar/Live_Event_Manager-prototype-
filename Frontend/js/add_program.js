@@ -41,18 +41,14 @@ body:JSON.stringify({
 programName:name,
 description:description,
 programOrderNumber:orderNumber,
-status:status
+status:status,
+event:eventId,
 })
 
 })
 
 const data = await res.json()
 
-console.log(data)
-
-alert("Program added")
-
-window.location.href =
-"event_manage.html?id=" + eventId
-
 })
+
+window.location.href="event_manage.html"

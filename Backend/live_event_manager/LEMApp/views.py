@@ -6,7 +6,7 @@ from rest_framework import status
 from django.http import Http404
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from .models import Event, Program
+from .models import Event, Program, User
 from .serializers import EventSerializer, ProgramSerializer
 
 from rest_framework.decorators import api_view, permission_classes
@@ -42,7 +42,6 @@ class EventListnCreate(generics.ListCreateAPIView):
 
         if self.request.user.is_authenticated:
             return Event.objects.filter(organizer=self.request.user)
-
         return Event.objects.all()
 
     def perform_create(self, serializer):
@@ -72,11 +71,8 @@ class ProgramListnCreate(APIView):
 
 
     def post(self, request, event):
-
         serializer = ProgramSerializer(data=request.data)
-
         if serializer.is_valid():
-
             serializer.save(event_id=event)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -128,7 +124,6 @@ class ProgramDetail(APIView):
 
 
     def delete(self, request, event, orderNumber):
-
         program = self.get_object(event, orderNumber)
 
         program.delete()

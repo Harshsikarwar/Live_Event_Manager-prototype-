@@ -1,5 +1,4 @@
 const API = "http://127.0.0.1:8000/api/event/"
-
 let allEvents = []
 
 const token = localStorage.getItem("token")
@@ -50,10 +49,11 @@ function displayEvents(events){
         const card = document.createElement("div")
 
         card.className = "event-card"
-
+        
         card.innerHTML = `
         
         <h3>${event.eventName}</h3>
+        <b>${event.organizer_name}</b>
 
         <p>${event.description}</p>
 

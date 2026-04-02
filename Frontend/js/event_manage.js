@@ -61,7 +61,7 @@ li.innerHTML = `
 
 <div>
 <button onclick="editProgram(${program.id})">Edit</button>
-<button onclick="deleteProgram(${program.id})">Delete</button>
+<button onclick="deleteProgram(${program.programOrderNumber})">Delete</button>
 </div>
 `
 
@@ -183,17 +183,16 @@ loadPrograms()
 
 async function deleteProgram(id){
 
-if(!confirm("Delete program?")) return
+    if(!confirm("Delete program?")) return
 
-await fetch(API + eventId + "/program/" + id + "/",{
+    await fetch(API + eventId + "/program/" + id + "/",{
 
-method:"DELETE",
+        method:"DELETE",
 
-headers:{
-"Authorization":"Token " + token
-}
-
-})
+        headers:{
+        "Authorization":"Token " + token
+        }
+    })
 
 loadPrograms()
 

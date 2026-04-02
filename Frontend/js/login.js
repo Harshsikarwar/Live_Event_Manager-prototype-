@@ -33,7 +33,7 @@ password:password
 
 const data = await res.json()
 
-if(res.ok){
+if(data["error"] != "Invalid credentials"){
 
 localStorage.setItem("token",data.token)
 
@@ -49,7 +49,8 @@ alert("Invalid credentials")
 
 }catch(err){
 
-alert("Server error")
+console.log("error");
+
 
 }
 
