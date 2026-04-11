@@ -1,14 +1,115 @@
-# Live Event Manager(prototype)
-The Live Event Manager is a web software that's manage changing orders
-of programmes of ongoing event which help to coordinate between team 
-members and notify correct sequence of upcoming program to audience.
+# 🎤 Live Event Manager (SyncStage)
 
-## Technology For Prototype
-* __Frontend :__ HTML, CSS and JS
-* __Backend :__ Django, Django Rest Framework
-* __Database :__ SQLLite
+A dynamic web-based solution designed to manage real-time changes in live events.  
+This system helps organizers, team members, and audiences stay synchronized with the latest program flow.
 
-## Entity And Relations
-* __Entity_1 :__ Event(organizer, eventName, discription, startTime, endTime)
-* __Entity_2 :__ Program(event, programOrderNumber, programName, discription)
-* __Relation :__ Event -(1 to many)-> Program
+---
+
+## 📌 Problem Statement
+
+In live events, schedules often change due to delays, cancellations, or adjustments.  
+These updates are usually communicated manually, leading to:
+
+- Confusion among organizers and teams  
+- Miscommunication with the audience  
+- Inefficient coordination  
+
+---
+
+## 🚀 Solution
+
+**Live Event Manager (SyncStage)** provides a centralized platform where:
+
+- Events can be created and managed easily  
+- Programs can be reordered dynamically  
+- Updates are reflected in real-time  
+- All stakeholders stay informed instantly  
+
+---
+
+## ✨ Features
+
+- 📅 Create and manage events  
+- 🧩 Add multiple programs under an event  
+- 🔄 Real-time program reordering  
+- ✏️ Update or delete programs instantly  
+- 📡 Live synchronization across users  
+- 🤝 Better coordination between team and audience  
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- HTML  
+- CSS  
+- JavaScript  
+
+**Backend**
+- Django  
+- Django REST Framework  
+
+**Database**
+- SQLite  
+
+---
+
+## 🧱 System Design
+
+### Entities
+
+- **Event**
+  - organizer  
+  - eventName  
+  - description  
+  - startTime  
+  - endTime  
+
+- **Program**
+  - event (Foreign Key)  
+  - programOrderNumber  
+  - programName  
+  - description  
+
+### Relationship
+
+- One **Event** ➝ Many **Programs**  
+  *(1:N relationship)*  
+
+---
+
+## ⚖️ Comparison with Existing Solutions
+
+| Feature                | Traditional Tools | Live Event Manager |
+|----------------------|------------------|-------------------|
+| Real-time updates     | ❌ No             | ✅ Yes            |
+| Centralized system    | ❌ No             | ✅ Yes            |
+| Dynamic reordering    | ❌ No             | ✅ Yes            |
+| Manual communication  | ✅ Required       | ❌ Not needed     |
+
+---
+
+## 🎯 Use Cases
+
+- College fests  
+- Conferences & seminars  
+- Cultural events  
+- Hackathons  
+- Any live program-based event  
+
+---
+
+## 📈 Future Improvements
+
+- 🔔 Push notifications for updates  
+- 📱 Mobile app integration  
+- 👥 Role-based access control  
+- 🌐 WebSocket-based real-time updates  
+- 📊 Analytics dashboard  
+
+---
+
+## 📌 Conclusion
+
+Live Event Manager simplifies handling of dynamic event schedules by providing real-time updates and a centralized system.  
+It reduces confusion, improves coordination, and enhances the overall event experience.
